@@ -22,5 +22,5 @@ E_mean = [10; 5];
 E_cov = [10 -5; -5 20];
 
 % randn cluster generation
-%R_A = chol(A_cov);
-%A_dist = repmat(A_mean,10,1) + randn(A_size,1)*R_A
+R_A = chol(A_cov);
+A_dist = repmat(A_mean,10,1) + randn(,2)*R_A
