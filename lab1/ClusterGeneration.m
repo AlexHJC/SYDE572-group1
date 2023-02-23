@@ -38,11 +38,11 @@ class_E = bivariatenormalfunct(E_size, E_cov, E_mean);
 %% Plotting samples
 
 % Calculate required params for std dev contour
-[thetaA, aA, bA] = stdcontour(A_cov);
-[thetaB, aB, bB] = stdcontour(B_cov);
-[thetaC, aC, bC] = stdcontour(C_cov);
-[thetaD, aD, bD] = stdcontour(D_cov);
-[thetaE, aE, bE] = stdcontour(E_cov);
+[thetaA, aA, bA] = std_contour(A_cov);
+[thetaB, aB, bB] = std_contour(B_cov);
+[thetaC, aC, bC] = std_contour(C_cov);
+[thetaD, aD, bD] = std_contour(D_cov);
+[thetaE, aE, bE] = std_contour(E_cov);
 
 % Plotting case 1
 figure(1)
