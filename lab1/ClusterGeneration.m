@@ -28,3 +28,4 @@ class_B = bivariatenormalfunct(B_size, B_cov, B_mean);
 class_C = bivariatenormalfunct(C_size, C_cov, C_mean);
 class_D = bivariatenormalfunct(D_size, D_cov, D_mean);
 class_E = bivariatenormalfunct(E_size, E_cov, E_mean);
+
