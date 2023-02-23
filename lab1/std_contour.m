@@ -1,4 +1,4 @@
-function [theta, a, b] = stdcontour(sigma)
+function [theta, a, b] = std_contour(sigma)
     [eigVec, eigVal] = eig(sigma);
     %theta = max(max(atan(eigVec(:,1)/eigVec(:,2))));
     theta = max(atan2(eigVec(:,1),eigVec(:,2)));
