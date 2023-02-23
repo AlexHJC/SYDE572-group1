@@ -70,8 +70,6 @@ xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
 
-a=1+1
-
 %% Classifiers
 
 % Apply MED Classifier
