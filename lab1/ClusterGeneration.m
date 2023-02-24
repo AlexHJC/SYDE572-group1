@@ -97,6 +97,7 @@ med_applied = MED_clf(med_grid, X1_1, X2_1, A_mean, B_mean);
 
 %% Plotting Classifiers
 
+% Case 1 -- MED, MICD & MAP Classifiers
 figure(3)
 hold on
 title('Case 1: MED, MICD & MAP Classifiers')
@@ -110,6 +111,7 @@ ylabel('x2')
 legend('Location', 'northeast')
 hold off 
 
+% Case 1 -- NN & 5NN Classifiers
 figure(4)
 hold on
 title('Case 1: NN & 5NN Classifiers')
@@ -122,6 +124,7 @@ ylabel('x2')
 legend('Location', 'northeast')
 hold off
 
+% Case 2 -- MED, MICD & MAP Classifiers
 figure(5)
 hold on
 title('Case 2: MED, MICD & MAP Classifiers')
@@ -136,6 +139,7 @@ ylabel('x2')
 legend('Location', 'northeast')
 hold off
 
+% Case 2 -- NN & 5NN Classifiers
 figure(6)
 hold on
 title('Case 2: NN & 5NN Classifiers')
