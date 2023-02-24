@@ -5,7 +5,11 @@
 % Etido Thompson
 % Oceane Vandame 20728517
 
+clear all
+clc
+
 %% Cluster generation
+
 % Case 1
 A_size = 200;
 A_mean = [5, 10];
@@ -72,4 +76,21 @@ legend('Location', 'northeast')
 
 %% Classifiers
 
-% Apply MED Classifier
+% Create mesh grid points
+
+% Case 1
+x1_vals_c1 = min([class_A(:,1);class_B(:,1)])-1 : 0.1 : max([class_B(:,1);class_B(:,1)])+1;
+x2_vals_c1 = min([class_A(:,2);class_B(:,2)])-1 : 0.1 : max([class_B(:,2);class_B(:,2)])+1;
+[X1_1, X2_1] = meshgrid(x1_vals_c1, x2_vals_c1);
+
+% Case 2
+x1_vals_c2 = min([class_C(:,1);class_D(:,1);class_E(:,1)])-1 : 0.1 : max([class_C(:,1);class_D(:,1);class_E(:,1)])+1;
+x2_vals_c2 = min([class_C(:,2);class_D(:,2);class_E(:,2)])-1 : 0.1 : max([class_C(:,2);class_D(:,2);class_E(:,2)])+1;
+[X1_2, X2_2] = meshgrid(x1_vals_c2, x2_vals_c2);
+
+% Classify each point with MED 
+% Create MED grid
+med_grid = create_mesh_grid(X1_1, X2_1);
+med_applied = MED_clf(med_grid, X1_1, X2_1, A_mean, B_mean);
+
+
