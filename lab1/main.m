@@ -1,12 +1,20 @@
-% SYDE 572 Lab 1
+%% SYDE 572 Lab 1
 % 02-27-2023
 % Mohammed Abidi 20720554
 % Alex Cho 20800781
 % Etido Thompson
 % Oceane Vandame 20728517
 
-clear all
-clc
+
+%% clear all plots and variables
+clear all;
+clc;
+
+% set random state for consistency
+rng(2);
+
+% adding functions folder
+addpath('./functions')
 
 %% Cluster generation
 
