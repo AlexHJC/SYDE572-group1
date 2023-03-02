@@ -162,10 +162,10 @@ legend('Location', 'northeast')
 hold off
 
 %% Plotting Classifiers Case 2
-% Case 2 -- MED, MICD & MAP Classifiers
+% Case 2 -- MED, GED, MICD & MAP Classifiers
 figure(5)
 hold on
-title('Case 2: MED, MICD & MAP Classifiers')
+title('Case 2: MED, GED, MICD & MAP Classifiers')
 scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C')
 scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D')
 scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E')
