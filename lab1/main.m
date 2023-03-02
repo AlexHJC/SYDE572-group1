@@ -6,7 +6,7 @@
 % Oceane Vandame 20728517
 
 
-%% clear all plots and variables
+%% clearing plots and setting global variables
 clear all;
 clc;
 
@@ -65,8 +65,8 @@ class_E = bivariatenormalfunct(E_size, E_cov, E_mean);
 figure(1)
 hold on
 title('Generated clusters for Class A & B')
-scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A')
-scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B')
+scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A', Marker='.')
+scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B', Marker='.')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
 xlabel('x1')
@@ -78,9 +78,9 @@ hold off
 figure(2)
 hold on
 title('Generated clusters for Class C, D & E')
-scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C')
-scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D')
-scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E')
+scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C', Marker='.')
+scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D', Marker='.')
+scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E', Marker='.')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
@@ -142,8 +142,8 @@ map3_applied = MAP3_clf(map3_grid, X1_2, X2_2, C_mean, D_mean, E_mean, C_cov, D_
 figure(3)
 hold on
 title('Case 1: MED, GED, MICD & MAP Classifiers')
-scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A')
-scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B')
+scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A', Marker='.')
+scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B', Marker='.')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
 contour(X1_1, X2_1, med_applied, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
@@ -158,8 +158,8 @@ hold off
 figure(4)
 hold on
 title('Case 1: NN & 5NN Classifiers')
-scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A')
-scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B')
+scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A', Marker='.')
+scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B', Marker='.')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
 contour(X1_1, X2_1, NN_clf, DisplayName='NN decision boundary') % NN CLASSIFIER
@@ -174,9 +174,9 @@ hold off
 figure(5)
 hold on
 title('Case 2: MED, GED, MICD & MAP Classifiers')
-scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C')
-scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D')
-scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E')
+scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C', Marker='.')
+scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D', Marker='.')
+scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E', Marker='.')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
@@ -192,9 +192,9 @@ hold off
 figure(6)
 hold on
 title('Case 2: NN & 5NN Classifiers')
-scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C')
-scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D')
-scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E')
+scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C', Marker='.')
+scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D', Marker='.')
+scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E', Marker='.')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
