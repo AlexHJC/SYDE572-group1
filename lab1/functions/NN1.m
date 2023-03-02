@@ -1,5 +1,4 @@
 function [NNdist] = NN1(k, X1, X2, classA, classB)
-
 %NN Calculate the K Nearest Neighbours for two classes
 
 % Defintion: For a given x you wish to classify, you compute the distance
