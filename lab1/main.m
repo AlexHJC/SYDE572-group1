@@ -165,8 +165,8 @@ scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A')
 scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
-contour(X1_1, X2_1, NN_clf1, DisplayName='NN decision boundary') % NN CLASSIFIER
-contour(X1_1, X2_1, kNN_clf1, DisplayName='kNN decision boundary') % NN CLASSIFIER
+contour(X1_1, X2_1, NN_clf1, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
+contour(X1_1, X2_1, kNN_clf1, 'm', DisplayName='kNN decision boundary') % NN CLASSIFIER
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
@@ -201,8 +201,8 @@ scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
-contour(X1_2, X2_2, NN_clf2, DisplayName='NN decision boundary') % NN CLASSIFIER
-contour(X1_2, X2_2, kNN_clf2, DisplayName='kNN decision boundary') % NN CLASSIFIER
+contour(X1_2, X2_2, NN_clf2, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
+contour(X1_2, X2_2, kNN_clf2, 'm', DisplayName='kNN decision boundary') % NN CLASSIFIER
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
