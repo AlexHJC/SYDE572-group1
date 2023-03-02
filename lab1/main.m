@@ -117,7 +117,11 @@ map_applied = MAP_clf(map_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov, A_prio
 
 % Classify each point with MED 
 med3_grid = create_mesh_grid(X1_2, X2_2);
-med3_applied = MED3_clf(med_grid, X1_2, X2_2, C_mean, D_mean, E_mean);
+med3_applied = MED3_clf(med3_grid, X1_2, X2_2, C_mean, D_mean, E_mean);
+
+% Classify each point with GED 
+ged3_grid = create_mesh_grid(X1_2, X2_2);
+ged3_applied = GED3_clf(ged3_grid, X1_2, X2_2, C_mean, D_mean, E_mean, C_cov, D_cov, E_cov);
 
 
 %% Plotting Classifiers Case 1
@@ -165,6 +169,7 @@ plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for 
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
 contour(X1_2, X2_2, med3_applied, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
+contour(X1_2, X2_2, ged3_applied, "green", DisplayName='GED decision boundary') % GED CLASSIFIER
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
