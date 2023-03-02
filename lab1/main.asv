@@ -94,12 +94,15 @@ x2_vals_c2 = min([class_C(:,2);class_D(:,2);class_E(:,2)])-1 : 0.1 : max([class_
 % Create MED grid
 med_grid = create_mesh_grid(X1_1, X2_1);
 med_applied = MED_clf(med_grid, X1_1, X2_1, A_mean, B_mean);
+
+% Classify each point with GED 
+% Create GED grid
 ged_grid = create_mesh_grid(X1_1, X2_1);
 ged_applied = GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov);
 
 %% Plotting Classifiers
 
-% Case 1 -- MED, MICD & MAP Classifiers
+% Case 1 -- MED, GED, MICD & MAP Classifiers
 figure(3)
 hold on
 title('Case 1: MED, GED, MICD & MAP Classifiers')
@@ -107,8 +110,8 @@ scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A')
 scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
-contour(X1_1, X2_1, med_applied, L, DisplayName='MED decision boundary') % MED CLASSIFIER
-contour(X1_1, X2_1, ged_applied, DisplayName='GED decision boundary') % GED CLASSIFIER
+contour(X1_1, X2_1, med_applied, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
+contour(X1_1, X2_1, ged_applied, "green", DisplayName='GED decision boundary') % GED CLASSIFIER
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
@@ -137,6 +140,7 @@ scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
+
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
