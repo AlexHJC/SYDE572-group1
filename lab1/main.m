@@ -1,7 +1,7 @@
 % SYDE 572 Lab 1
 % 02-27-2023
 % Mohammed Abidi 20720554
-% Alex Cho
+% Alex Cho 20800781
 % Etido Thompson
 % Oceane Vandame 20728517
 
