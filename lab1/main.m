@@ -7,7 +7,8 @@
 
 
 %% clearing plots and setting global variables
-clear all;
+close all;
+clear vars;
 clc;
 
 % set random state for consistency
@@ -112,20 +113,13 @@ med_applied = MED_clf(med_grid, X1_1, X2_1, A_mean, B_mean);
 ged_grid = create_mesh_grid(X1_1, X2_1);
 ged_applied = GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov);
 
-% Classifying with NN
-
-% Case 1:
-NN_clf1 = NN1(1,X1_1, X2_1, class_A, class_B);
-kNN_clf1 = NN1(5,X1_1, X2_1, class_A, class_B);
-
-% Case 2:
-NN_clf2 = NN2(1,X1_2, X2_2, class_A, class_B, class_C);
-kNN_clf2 = NN2(5,X1_2, X2_2, class_A, class_B, class_C);
-
 % Classify each point with MAP
-% Create MAP grid
 map_grid = create_mesh_grid(X1_1, X2_1);
 map_applied = MAP_clf(map_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov, A_prior, B_prior);
+
+% Classifying with NN Case 1:
+NN_clf1 = NN1(1,X1_1, X2_1, class_A, class_B);
+kNN_clf1 = NN1(5,X1_1, X2_1, class_A, class_B);
 
 % Case 2:
 
@@ -141,6 +135,9 @@ ged3_applied = GED3_clf(ged3_grid, X1_2, X2_2, C_mean, D_mean, E_mean, C_cov, D_
 map3_grid = create_mesh_grid(X1_2, X2_2);
 map3_applied = MAP3_clf(map3_grid, X1_2, X2_2, C_mean, D_mean, E_mean, C_cov, D_cov, E_cov, C_prior, D_prior, E_prior);
 
+% Classifying with NN Case 2:
+NN_clf2 = NN2(1,X1_2, X2_2, class_A, class_B, class_C);
+kNN_clf2 = NN2(5,X1_2, X2_2, class_A, class_B, class_C);
 
 %% Plotting Classifiers Case 1
 
