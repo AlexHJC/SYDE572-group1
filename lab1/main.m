@@ -76,9 +76,7 @@ ylabel('x2')
 legend('Location', 'northeast')
 hold off
 
-%% Classifiers
-
-% Create mesh grid points
+%% Create mesh grid points for classifiers
 
 % Case 1
 x1_vals_c1 = min([class_A(:,1);class_B(:,1)])-1 : 0.1 : max([class_B(:,1);class_B(:,1)])+1;
@@ -104,7 +102,7 @@ ged_applied = GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov);
 NN_clf = NN1(1,X1_1, X2_1, class_A, class_B);
 kNN_clf = NN1(5,X1_1, X2_1, class_A, class_B);
 
-%% Plotting Classifiers
+%% Plotting Classifiers Case 1
 
 % Case 1 -- MED, GED, MICD & MAP Classifiers
 figure(3)
@@ -136,6 +134,7 @@ ylabel('x2')
 legend('Location', 'northeast')
 hold off
 
+%% Plotting Classifiers Case 2
 % Case 2 -- MED, MICD & MAP Classifiers
 figure(5)
 hold on
