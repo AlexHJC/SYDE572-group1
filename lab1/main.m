@@ -82,7 +82,6 @@ legend('Location', 'northeast')
 hold off
 
 %% Create mesh grid points for classifiers
-
 % Case 1
 x1_vals_c1 = min([class_A(:,1);class_B(:,1)])-1 : 0.1 : max([class_B(:,1);class_B(:,1)])+1;
 x2_vals_c1 = min([class_A(:,2);class_B(:,2)])-1 : 0.1 : max([class_B(:,2);class_B(:,2)])+1;
@@ -93,24 +92,32 @@ x1_vals_c2 = min([class_C(:,1);class_D(:,1);class_E(:,1)])-1 : 0.1 : max([class_
 x2_vals_c2 = min([class_C(:,2);class_D(:,2);class_E(:,2)])-1 : 0.1 : max([class_C(:,2);class_D(:,2);class_E(:,2)])+1;
 [X1_2, X2_2] = meshgrid(x1_vals_c2, x2_vals_c2);
 
+%% Classify data sets
+
+% Case 1:
+
 % Classify each point with MED 
-% Create MED grid
 med_grid = create_mesh_grid(X1_1, X2_1);
 med_applied = MED_clf(med_grid, X1_1, X2_1, A_mean, B_mean);
 
 % Classify each point with GED 
-% Create GED grid
 ged_grid = create_mesh_grid(X1_1, X2_1);
 ged_applied = GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov);
 
-% Classifying with NN (Case 1)
+% Classifying with NN
 NN_clf = NN1(1,X1_1, X2_1, class_A, class_B);
 kNN_clf = NN1(5,X1_1, X2_1, class_A, class_B);
 
-% Classify each point with MAP (Case 1)
+% Classify each point with MAP
 % Create MAP grid
 map_grid = create_mesh_grid(X1_1, X2_1);
 map_applied = MAP_clf(map_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov, A_prior, B_prior);
+
+% Case 2:
+
+% Classify each point with MED 
+med3_grid = create_mesh_grid(X1_2, X2_2);
+med3_applied = MED3_clf(med_grid, X1_2, X2_2, C_mean, D_mean, E_mean);
 
 
 %% Plotting Classifiers Case 1
@@ -157,6 +164,7 @@ scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
+contour(X1_2, X2_2, med3_applied, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
