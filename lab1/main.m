@@ -125,6 +125,7 @@ plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for 
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
 contour(X1_1, X2_1, med_applied, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
 contour(X1_1, X2_1, ged_applied, "green", DisplayName='GED decision boundary') % GED CLASSIFIER
+contour(X1_1, X2_1, map_applied, "blue", DisplayName='MAP decision boundary') % MAP CLASSIFIER
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
