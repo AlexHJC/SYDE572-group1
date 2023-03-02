@@ -14,23 +14,28 @@ clc
 A_size = 200;
 A_mean = [5, 10];
 A_cov = [8 0; 0 4];
+A_prior = 200/400;
 
 B_size = 200;
 B_mean = [10, 15];
 B_cov = [8 0; 0 4];
+B_prior = 200/400;
 
 % Case 2
 C_size = 100;
 C_mean = [5, 10];
 C_cov = [8 4; 4 40];
+C_prior = 300/450;
 
 D_size = 200;
 D_mean = [15, 10];
 D_cov = [8 0; 0 8];
+D_prior = 200/450;
 
 E_size = 150;
 E_mean = [10, 5];
 E_cov = [10 -5; -5 20];
+E_prior = 150/450;
 
 % Create bivariate normal distributions for each class
 class_A = bivariatenormalfunct(A_size, A_cov, A_mean);
@@ -93,6 +98,7 @@ x2_vals_c2 = min([class_C(:,2);class_D(:,2);class_E(:,2)])-1 : 0.1 : max([class_
 med_grid = create_mesh_grid(X1_1, X2_1);
 med_applied = MED_clf(med_grid, X1_1, X2_1, A_mean, B_mean);
 
+<<<<<<< Updated upstream
 % Classify each point with GED 
 % Create GED grid
 ged_grid = create_mesh_grid(X1_1, X2_1);
@@ -101,6 +107,12 @@ ged_applied = GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov);
 % Classifying with NN (Case 1)
 NN_clf = NN1(1,X1_1, X2_1, class_A, class_B);
 kNN_clf = NN1(5,X1_1, X2_1, class_A, class_B);
+=======
+% Classify each point with MAP
+% Create MAP grid
+map_grid = create_mesh_grid(X1_1, X2_1);
+map_applied = MAP_clf(map_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov, A_prior, B_prior);
+>>>>>>> Stashed changes
 
 %% Plotting Classifiers Case 1
 
@@ -112,8 +124,13 @@ scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A')
 scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
+<<<<<<< Updated upstream
 contour(X1_1, X2_1, med_applied, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
 contour(X1_1, X2_1, ged_applied, "green", DisplayName='GED decision boundary') % GED CLASSIFIER
+=======
+contour(X1_1, X2_1, med_applied, DisplayName='MED decision boundary') % MED CLASSIFIER
+contour(X1_1, X2_1, map_applied, DisplayName='MAP decision boundary') % MAP CLASSIFIER
+>>>>>>> Stashed changes
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')

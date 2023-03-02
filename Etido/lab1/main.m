@@ -1,6 +1,6 @@
 % SYDE 572 Lab 1
 % 02-27-2023
-% Mohammed Abidi
+% Mohammed Abidi 20720554
 % Alex Cho
 % Etido Thompson
 % Oceane Vandame 20728517
@@ -101,6 +101,15 @@ ged_applied = GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov);
 NN_clf = NN1(1,X1_1, X2_1, class_A, class_B);
 kNN_clf = NN1(5,X1_1, X2_1, class_A, class_B);
 
+<<<<<<< Updated upstream:Etido/lab1/main.m
+=======
+% Classifying with MAP (Case 1)
+
+
+% Classifying with MAP (Case 2)
+
+
+>>>>>>> Stashed changes:SYDE572-group1-main/lab1/main.m
 %% Plotting Classifiers
 
 % Case 1 -- MED, MICD & MAP Classifiers
