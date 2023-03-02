@@ -100,6 +100,10 @@ med_applied = MED_clf(med_grid, X1_1, X2_1, A_mean, B_mean);
 ged_grid = create_mesh_grid(X1_1, X2_1);
 ged_applied = GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov);
 
+% Classifying with NN (Case 1)
+NN_clf = NN1(1,X1_1, X2_1, class_A, class_B);
+kNN_clf = NN1(5,X1_1, X2_1, class_A, class_B);
+
 %% Plotting Classifiers
 
 % Case 1 -- MED, GED, MICD & MAP Classifiers
@@ -125,6 +129,8 @@ scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A')
 scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
+contour(X1_1, X2_1, NN_clf, DisplayName='NN decision boundary') % NN CLASSIFIER
+contour(X1_1, X2_1, kNN_clf, DisplayName='kNN decision boundary') % NN CLASSIFIER
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
