@@ -18,7 +18,7 @@ rng(2);
 addpath('./functions')
 
 % setting linewidth and contour level
-level = 3;
+level = 50;
 LINE_WIDTH = 4;
 
 %% Cluster generation
@@ -169,7 +169,7 @@ ylabel('x2')
 legend('Location', 'northeast')
 hold off 
 
-% Case 1 -- NN & 5NN Classifiers
+%% Case 1 -- NN & 5NN Classifiers
 figure(4)
 hold on
 title('Case 1: NN & 5NN Classifiers')
@@ -204,22 +204,24 @@ plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for 
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
 
-% % add decision boundaries for MED, GED/MICD, MAP classifiers
-% contour(X1_2, X2_2, med3_applied, level, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
-% contour(X1_2, X2_2, ged3_applied, level, "green", DisplayName='GED decision boundary') % GED/MICD CLASSIFIER
-% contour(X1_2, X2_2, map3_applied, level, "--blue", DisplayName='MAP decision boundary') % MAP CLASSIFIER
+% add decision boundaries for MED, GED/MICD, MAP classifiers
+contour(X1_2, X2_2, med3_applied, level, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
+contour(X1_2, X2_2, ged3_applied, level, "green", DisplayName='GED decision boundary') % GED/MICD CLASSIFIER
+contour(X1_2, X2_2, map3_applied, level, "--blue", DisplayName='MAP decision boundary') % MAP CLASSIFIER
 
-% add shaded decision boundary regions
-contourf(X1_2, X2_2, med3_applied, level, "black", DisplayName='MED decision boundary', FaceAlpha=0.25) % MED CLASSIFIER
-contourf(X1_2, X2_2, ged3_applied, level, "green", DisplayName='GED decision boundary', FaceAlpha=0.25) % GED/MICD CLASSIFIER
-contourf(X1_2, X2_2, map3_applied, level, "--blue", DisplayName='MAP decision boundary', FaceAlpha=0.25) % MAP CLASSIFIER
+% % add shaded decision boundary regions
+% contourf(X1_2, X2_2, med3_applied, level, "black", DisplayName='MED decision boundary', FaceAlpha=0.25) % MED CLASSIFIER
+% contourf(X1_2, X2_2, ged3_applied, level, "green", DisplayName='GED decision boundary', FaceAlpha=0.25) % GED/MICD CLASSIFIER
+% contourf(X1_2, X2_2, map3_applied, level, "--blue", DisplayName='MAP decision boundary', FaceAlpha=0.25) % MAP CLASSIFIER
 
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
 hold off
 
-% Case 2 -- NN & 5NN Classifiers
+%% Case 2 -- NN & 5NN Classifiers
+% something wrong with the NN and KNN classifiers for case 2
+% definitely not correct
 figure(6)
 hold on
 title('Case 2: NN & 5NN Classifiers')
@@ -230,13 +232,13 @@ plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for 
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
 
-% % add decision boundaries for NN, 5NN classifiers
-% contour(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
-% contour(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
+% add decision boundaries for NN, 5NN classifiers
+contour(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
+contour(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
 
-% add shaded decision boundary regions
-contourf(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
-contourf(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
+% % add shaded decision boundary regions
+% contourf(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
+% contourf(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
 
 xlabel('x1')
 ylabel('x2')
