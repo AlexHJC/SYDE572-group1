@@ -245,4 +245,8 @@ ylabel('x2')
 legend('Location', 'northeast')
 hold off
 
+%% error analysis
+disp('GED Error analysis:');
+GED_error_analysis;
+
 
