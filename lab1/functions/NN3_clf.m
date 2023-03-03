@@ -1,3 +1,4 @@
+function [NNdist] = NN3_clf(k, X1, X2, classA, classB, classC)
 % Definition: For a given x you wish to classify, you compute the distance
 % between x and all labeled samples, and you assign x the same class as its
 % nearest neighbour
