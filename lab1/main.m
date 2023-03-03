@@ -18,7 +18,7 @@ rng(2);
 addpath('./functions')
 
 % setting linewidth and contour level
-level = 50;
+level = 20;
 LINE_WIDTH = 4;
 
 %% Cluster generation
