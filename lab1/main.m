@@ -17,8 +17,9 @@ rng(2);
 % adding functions folder
 addpath('./functions')
 
-% setting linewidth
-LINE_WIDTH = 2;
+% setting linewidth and contour level
+level = 3;
+LINE_WIDTH = 4;
 
 %% Cluster generation
 
@@ -69,8 +70,8 @@ class_E = bivariatenormalfunct(E_size, E_cov, E_mean);
 figure(1)
 hold on
 title('Generated clusters for Class A & B')
-scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A', Marker='.', LineWidth=LINE_WIDTH)
-scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B', Marker='.', LineWidth=LINE_WIDTH)
+scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A', Marker='.')
+scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B', Marker='.')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
 xlabel('x1')
@@ -82,9 +83,9 @@ hold off
 figure(2)
 hold on
 title('Generated clusters for Class C, D & E')
-scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C', Marker='.', LineWidth=LINE_WIDTH)
-scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D', Marker='.', LineWidth=LINE_WIDTH)
-scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E', Marker='.', LineWidth=LINE_WIDTH)
+scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C', Marker='.')
+scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D', Marker='.')
+scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E', Marker='.')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
@@ -148,13 +149,21 @@ kNN_clf2 = NN2(5,X1_2, X2_2, class_A, class_B, class_C);
 figure(3)
 hold on
 title('Case 1: MED, GED/MICD & MAP Classifiers')
-scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A', Marker='.', LineWidth=LINE_WIDTH)
-scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B', Marker='.', LineWidth=LINE_WIDTH)
+scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A', Marker='.')
+scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B', Marker='.')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
-contour(X1_1, X2_1, med_applied, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
-contour(X1_1, X2_1, ged_applied, "green", DisplayName='GED decision boundary') % GED/MICD CLASSIFIER
-contour(X1_1, X2_1, map_applied, "--blue", DisplayName='MAP decision boundary') % MAP CLASSIFIER
+
+% add decision boundaries for MED, GED/MICD, MAP classifiers
+contour(X1_1, X2_1, med_applied, level, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
+contour(X1_1, X2_1, ged_applied, level, "green", DisplayName='GED decision boundary') % GED/MICD CLASSIFIER
+contour(X1_1, X2_1, map_applied, level, "--blue", DisplayName='MAP decision boundary') % MAP CLASSIFIER
+
+% % add shaded decision boundary regions
+% contourf(X1_1, X2_1, med_applied, level, "black", DisplayName='MED decision boundary', FaceAlpha=0.25) % MED CLASSIFIER
+% contourf(X1_1, X2_1, ged_applied, level, "green", DisplayName='GED decision boundary', FaceAlpha=0.25) % GED/MICD CLASSIFIER
+% contourf(X1_1, X2_1, map_applied, level, "--blue", DisplayName='MAP decision boundary', FaceAlpha=0.25) % MAP CLASSIFIER
+
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
@@ -164,12 +173,20 @@ hold off
 figure(4)
 hold on
 title('Case 1: NN & 5NN Classifiers')
-scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A')
-scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B')
+scatter(class_A(:,1), class_A(:,2), 'red', DisplayName='Class A', Marker='.')
+scatter(class_B(:,1), class_B(:,2), 'blue', DisplayName='Class B', Marker='.')
 plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for Class A')
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
-contour(X1_1, X2_1, NN_clf1, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
-contour(X1_1, X2_1, kNN_clf1, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
+
+% add decision boundaries for NN, 5NN classifiers
+contour(X1_1, X2_1, NN_clf1, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
+contour(X1_1, X2_1, kNN_clf1, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
+
+% % add shaded decision boundary regions
+% contourf(X1_1, X2_1, NN_clf1, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
+% contourf(X1_1, X2_1, kNN_clf1, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
+
+
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
@@ -180,15 +197,23 @@ hold off
 figure(5)
 hold on
 title('Case 2: MED, GED/MICD & MAP Classifiers')
-scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C', Marker='.', LineWidth=LINE_WIDTH)
-scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D', Marker='.', LineWidth=LINE_WIDTH)
-scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E', Marker='.', LineWidth=LINE_WIDTH)
+scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C', Marker='.')
+scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D', Marker='.')
+scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E', Marker='.')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
-contour(X1_2, X2_2, med3_applied, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
-contour(X1_2, X2_2, ged3_applied, "green", DisplayName='GED decision boundary') % GED/MICD CLASSIFIER
-contour(X1_2, X2_2, map3_applied, "--blue", DisplayName='MAP decision boundary') % MAP CLASSIFIER
+
+% % add decision boundaries for MED, GED/MICD, MAP classifiers
+% contour(X1_2, X2_2, med3_applied, level, "black", DisplayName='MED decision boundary') % MED CLASSIFIER
+% contour(X1_2, X2_2, ged3_applied, level, "green", DisplayName='GED decision boundary') % GED/MICD CLASSIFIER
+% contour(X1_2, X2_2, map3_applied, level, "--blue", DisplayName='MAP decision boundary') % MAP CLASSIFIER
+
+% add shaded decision boundary regions
+contourf(X1_2, X2_2, med3_applied, level, "black", DisplayName='MED decision boundary', FaceAlpha=0.25) % MED CLASSIFIER
+contourf(X1_2, X2_2, ged3_applied, level, "green", DisplayName='GED decision boundary', FaceAlpha=0.25) % GED/MICD CLASSIFIER
+contourf(X1_2, X2_2, map3_applied, level, "--blue", DisplayName='MAP decision boundary', FaceAlpha=0.25) % MAP CLASSIFIER
+
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
@@ -198,14 +223,21 @@ hold off
 figure(6)
 hold on
 title('Case 2: NN & 5NN Classifiers')
-scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C')
-scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D')
-scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E')
+scatter(class_C(:,1), class_C(:,2), 'red', DisplayName='Class C', Marker='.')
+scatter(class_D(:,1), class_D(:,2), 'blue', DisplayName='Class D', Marker='.')
+scatter(class_E(:,1), class_E(:,2), 'green', DisplayName='Class E', Marker='.')
 plot_ellipse(C_mean(1), C_mean(2), thetaC, aC, bC, 'red', 'Std. dev contour for Class C')
 plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for Class D')
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
-contour(X1_2, X2_2, NN_clf2, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
-contour(X1_2, X2_2, kNN_clf2, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
+
+% % add decision boundaries for NN, 5NN classifiers
+% contour(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
+% contour(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
+
+% add shaded decision boundary regions
+contourf(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
+contourf(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
+
 xlabel('x1')
 ylabel('x2')
 legend('Location', 'northeast')
