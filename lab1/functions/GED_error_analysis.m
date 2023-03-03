@@ -9,5 +9,5 @@ GED_conf_matrix_ab = [
     [TA, FB];
     [FA, TB];
 ];
-disp('Confusion matrix for A & B:');
+disp('Confusion matrix for Class A & B:');
 disp(GED_conf_matrix_ab);
