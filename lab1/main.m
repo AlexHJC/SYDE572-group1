@@ -2,7 +2,7 @@
 % 02-27-2023
 % Mohammed Abidi 20720554
 % Alex Cho 20800781
-% Etido Thompson
+% Etido Thompson 20765765
 % Oceane Vandame 20728517
 
 
