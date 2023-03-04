@@ -1,9 +1,0 @@
-function applied_med_grid = MED_clf_err(X1, mean1, mean2)
-
-    dist = zeros(length(X1), 1);
-    get_dist = @(xbar, mean) sqrt((xbar-mean) * (xbar-mean)');
-    for i = 1:length(X1)
-            xbar = X1(i,:);
-            dist(i) = get_dist(xbar, mean1) - get_dist(xbar, mean2);
-    end
-end

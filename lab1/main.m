@@ -245,8 +245,25 @@ legend('Location', 'northeast')
 hold off
 
 %% error analysis
-disp('GED Error analysis:');
-GED_error_analysis;
 disp('MED Error analysis:');
 MED_error_analysis;
+disp('GED Error analysis:');
+GED_error_analysis;
+disp('MAP Error analysis:');
+MAP_error_analysis;
+
+% create new test variables for NN KNN testing
+rng(6);
+class_A_test = bivariatenormalfunct(A_size, A_cov, A_mean);
+class_B_test = bivariatenormalfunct(B_size, B_cov, B_mean);
+class_C_test = bivariatenormalfunct(C_size, C_cov, C_mean);
+class_D_test = bivariatenormalfunct(D_size, D_cov, D_mean);
+class_E_test = bivariatenormalfunct(E_size, E_cov, E_mean);
+
+disp('NN Error analysis:');
+NN_error_analysis;
+disp('KNN Error analysis:');
+KNN_error_analysis;
+
+disp('---end of calculations---')
 
