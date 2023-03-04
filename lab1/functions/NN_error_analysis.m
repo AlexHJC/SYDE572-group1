@@ -20,3 +20,82 @@ disp('P_error for A & B:');
 disp(P_error_1);
 
 %%%%%% Case 2 %%%%%%%
+% creating NN classifications for all 9 combinations of each class
+NN_applied_cd_c = NN_clf_err(1, class_C_test, class_C, class_D);
+NN_applied_de_c = NN_clf_err(1, class_C_test, class_D, class_E);
+NN_applied_ec_c = NN_clf_err(1, class_C_test, class_E, class_C);
+
+NN_applied_cd_d = NN_clf_err(1, class_D_test, class_C, class_D);
+NN_applied_de_d = NN_clf_err(1, class_D_test, class_D, class_E);
+NN_applied_ec_d = NN_clf_err(1, class_D_test, class_E, class_C);
+
+NN_applied_cd_e = NN_clf_err(1, class_E_test, class_C, class_D);
+NN_applied_de_e = NN_clf_err(1, class_E_test, class_D, class_E);
+NN_applied_ec_e = NN_clf_err(1, class_E_test, class_E, class_C);
+
+% Confusion matrix of the form:
+%       Predicted:    C       D     E
+% Actual:         C [ TC   TC_FD  TC_FE ]
+%                 D [ TD_FC   TD  TD_FE ]
+%                 E [ TE_FC TE_FD    TE ]
+
+TC = 0;
+TD = 0;
+TE = 0;
+
+FD_C = 0;
+FE_C = 0;
+
+FC_D = 0;
+FE_D = 0;
+
+FC_E = 0;
+FD_E = 0;
+
+for i = 1:length(class_C)
+   class = classifypoint(NN_applied_cd_c(i), NN_applied_de_c(i), NN_applied_ec_c(i));
+   if class == 1
+       TC = TC + 1;
+   elseif class == 2
+       FD_C = FD_C + 1;
+   elseif class == 3
+       FE_C = FE_C + 1;
+   end
+end
+
+for i = 1:length(class_D)
+   class = classifypoint(NN_applied_cd_d(i), NN_applied_de_d(i), NN_applied_ec_d(i));
+   if class == 1
+       FC_D = FC_D + 1;
+   elseif class == 2
+       TD = TD + 1;
+   elseif class == 3
+       FE_D = FE_D + 1;
+   end
+end
+
+for i = 1:length(class_E)
+   class = classifypoint(NN_applied_cd_e(i), NN_applied_de_e(i), NN_applied_ec_e(i));
+   if class == 1
+       FC_E = FC_E + 1;
+   elseif class == 2
+       FD_E = FD_E + 1;
+   elseif class == 3
+       TE = TE + 1;
+   end
+end
+
+NN_conf_matrix = [
+    [TC, FD_C, FE_C];
+    [FC_D, TD, FE_D];
+    [FC_E, FD_E, TE];
+];
+
+disp('Confusion matrix for C, D & E:');
+disp(NN_conf_matrix);
+
+correct_2 = (TC + TE + TD) / (C_size + D_size + E_size);
+P_error_2 = 1 - correct_2;
+
+disp('P(error) for C, D & E:');
+disp(P_error_2);
