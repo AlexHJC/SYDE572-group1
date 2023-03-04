@@ -248,5 +248,7 @@ hold off
 % GED confusion matrix definitely incorrect
 disp('GED Error analysis:');
 GED_error_analysis;
-
+% MED error analysis seems correct
+disp('MED Error analysis:');
+MED_error_analysis;
 
