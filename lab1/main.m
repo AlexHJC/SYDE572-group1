@@ -18,7 +18,7 @@ rng(2);
 addpath('./functions')
 
 % Setting linewidth and contour level
-level = 20;
+level = 10;
 LINE_WIDTH = 4;
 
 %% Cluster generation
@@ -273,5 +273,5 @@ NN_error_analysis;
 disp('KNN Error analysis:');
 KNN_error_analysis;
 
-disp('---end of calculations---\n')
+disp('---end of calculations---')
 
