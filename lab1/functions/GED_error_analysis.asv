@@ -2,14 +2,23 @@
 
 % case 1
 
-% populate a column vector o
+% populate two column vectors with the class A and B true positives (TA, TB) and the
+% False positives (FA, FB)
 [TA, FA] = get_error(A_size, GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov), @(d) d < 0);
 [TB, FB] = get_error(B_size, GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov), @(d) d > 0);
 
-GED_conf_matrix_ab = [
+% combine column vectors into 2x2 confusion matrix
+GED_conf_matrix = [
     [TA, FB];
     [FA, TB];
 ];
 
+% display confusion matrix in terminal
 disp('Confusion matrix for Class A & B:');
-disp(GED_conf_matrix_ab);
+fprintf(' |  A   |   B   |\n')
+fprintf('A|', [TA, FB], '\n')
+% disp(' |  A   |   B   |')
+% disp('A|')
+% disp([TA, FB]);
+% disp('B|')
+% disp([FA, TB]);

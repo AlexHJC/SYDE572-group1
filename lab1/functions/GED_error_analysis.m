@@ -15,4 +15,4 @@ GED_conf_matrix = [
 
 % display confusion matrix in terminal
 disp('Confusion matrix for Class A & B:');
-disp(GED_conf_matrix);
+disp(GED_conf_matrix)
