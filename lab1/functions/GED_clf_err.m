@@ -1,16 +1,8 @@
-function applied_ged_grid_err = GED_clf_err(grid, X1, mean1, mean2, cov1, cov2)
-
-    % Make new grid for discriminant values 
-    discriminant = grid;
-    applied_ged_grid_err = grid;
+function distance = GED_clf_err(X1, mean1, mean2, cov1, cov2)
     
-    % Populate discriminant values
-    for i = 1:height(X1)
-            xbar = X1;
-            invcov1 = inv(cov1);
-            invcov2 = inv(cov2);
-            g1 = (xbar - mean1) * invcov1 * transpose(xbar - mean1);
-            g2 = (xbar - mean2) * invcov2 * transpose(xbar - mean2);
-            g = g1 - g2;
-            discriminant(i,1i) = g;
+    distance = zeros(length(X1), 1);
+    get_dist = @(xbar, cov, mean) sqrt((xbar - mean) * inv(cov) * transpose(xbar - mean));
+    for i = 1:length(X1)
+            xbar = X1(i,:);
+            distance(i) = get_dist(xbar, cov1, mean1) - get_dist(xbar, cov2, mean2);
     end

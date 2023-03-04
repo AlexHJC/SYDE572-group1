@@ -1,6 +1,6 @@
 %% MED Error Analysis
 
-%%%%%% Class 1 %%%%%%%
+%%%%%% Case 1 %%%%%%%
 
 % Confusion matrix
 [TA, FA] = get_true_false(A_size, MED_clf_err(class_A, A_mean, B_mean), @(d) d < 0);
@@ -17,3 +17,5 @@ P_error_1 = (FA + FB)/(A_size + B_size);
 
 disp('P_error for A & B:');
 disp(P_error_1);
+
+%%%%%% Case 2 %%%%%%%
