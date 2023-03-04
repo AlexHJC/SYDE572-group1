@@ -1,5 +1,5 @@
-function [NNdist] = NN_clf(k, X1, X2, classA, classB)
-%Calculate the K Nearest Neighbours for case 1 where there are two classes
+function [NNdist] = NN_clf(grid, k, X1, X2, classA, classB)
+% Calculate the K Nearest Neighbours for case 1 where there are two classes
 % The code written does NN when k = 1 and kNN when k > 1 
 
 % NN Defintion: For a given x you wish to classify, you compute the distance
@@ -10,11 +10,11 @@ function [NNdist] = NN_clf(k, X1, X2, classA, classB)
 % between x and all labeled samples, and you define the prototype in each cluster as the sample mean of K samples within that cluster that is nearest x 
 
 % initialize NNdist
-NNdist = zeros(size(X1));
+applied_NN = grid;
 
 % loop over every point in the grid
-for i = 1:size(X1, 1)
-    for j = 1:size(X1, 2)
+for i = 1:height(X1)
+    for j = 1:width(X2)
         
         % calculate the Euclidean distances between the current point and all samples
         point = [X1(i,j), X2(i,j)];
@@ -28,10 +28,10 @@ for i = 1:size(X1, 1)
         mean_b = mean(b_distances(sorted_b(1:k)));
         
         % assign the label of the nearest neighbor
-        if mean_a > mean_b
-            NNdist(i,j) = 1;
+        if mean_a < mean_b
+            applied_NN(i,j) = 1;
         else
-            NNdist(i,j) = 0;
+            applied_NN(i,j) = 2;
         end
         
     end

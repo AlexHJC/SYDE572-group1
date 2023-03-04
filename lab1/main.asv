@@ -144,12 +144,8 @@ map3_grid = create_mesh_grid(X1_2, X2_2);
 map3_applied = MAP3_clf(map3_grid, X1_2, X2_2, C_mean, D_mean, E_mean, C_cov, D_cov, E_cov, C_prior, D_prior, E_prior);
 
 % Classify each point with NN:
-NN3_grid = create_mesh_grid(X1_2, X2_2);
-NN3_applied = NN3_clf(NN3_grid, 1 ,X1_2, X2_2, class_A, class_B, class_C);
-
-% Classify each point with kNN (k=5):
-kNN3_grid = create_mesh_grid(X1_2, X2_2);
-kNN3_applied = NEW_NN3_clf(kNN3_grid, 5, X1_2, X2_2, class_A, class_B, class_C);
+NN_clf2 = NN3_clf(1,X1_2, X2_2, class_A, class_B, class_C);
+kNN_clf2 = NN3_clf(5,X1_2, X2_2, class_A, class_B, class_C);
 
 %% Plotting Classifiers Case 1
 
@@ -240,12 +236,12 @@ plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
 
 % add decision boundaries for NN, 5NN classifiers
-contour(X1_2, X2_2, NN3_applied, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
-contour(X1_2, X2_2, kNN3_applied, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
+contour(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
+contour(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
 
 % % add shaded decision boundary regions
-% contourf(X1_2, X2_2, NN3_applied, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
-% contourf(X1_2, X2_2, kNN3_applied, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
+% contourf(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
+% contourf(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
 
 xlabel('x1')
 ylabel('x2')
@@ -253,25 +249,7 @@ legend('Location', 'northeast')
 hold off
 
 %% error analysis
-disp('MED Error analysis:');
-MED_error_analysis;
 disp('GED Error analysis:');
 GED_error_analysis;
-disp('MAP Error analysis:');
-MAP_error_analysis;
 
-% create new test variables for NN KNN testing
-rng(6);
-class_A_test = bivariatenormalfunct(A_size, A_cov, A_mean);
-class_B_test = bivariatenormalfunct(B_size, B_cov, B_mean);
-class_C_test = bivariatenormalfunct(C_size, C_cov, C_mean);
-class_D_test = bivariatenormalfunct(D_size, D_cov, D_mean);
-class_E_test = bivariatenormalfunct(E_size, E_cov, E_mean);
-
-disp('NN Error analysis:');
-NN_error_analysis;
-disp('KNN Error analysis:');
-KNN_error_analysis;
-
-disp('---end of calculations---')
 
