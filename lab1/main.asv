@@ -265,5 +265,5 @@ NN_error_analysis;
 disp('KNN Error analysis:');
 KNN_error_analysis;
 
-disp('---end of calculations---\n')
+disp('---end of calculations---')
 

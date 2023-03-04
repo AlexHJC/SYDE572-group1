@@ -62,6 +62,9 @@ for i = 1:length(class_C)
    end
 end
 
+disp(length(class_D))
+disp(length(class_C))
+
 for i = 1:length(class_D)
    class = classifypoint(MED_applied_cd_d(i), MED_applied_de_d(i), MED_applied_ec_d(i));
    if class == 1
@@ -93,7 +96,7 @@ MED3_conf_matrix = [
 disp('Confusion matrix for C, D & E:');
 disp(MED3_conf_matrix);
 
-correct_2 = (TC + TE + TD) / (C_size + D_size + E_size);
+correct_2 = (TC + TE + TD) / (C_size + D_size + n_e);
 P_error_2 = 1 - correct_2;
 
 disp('P(error) for C, D & E:');

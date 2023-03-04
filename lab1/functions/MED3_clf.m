@@ -1,6 +1,6 @@
 function applied_med_grid = MED3_clf(grid, X1, X2, mean1, mean2, mean3)
 
-    % Make new grid for discriminant values 
+    % Make new grid for discriminant values
     discriminant12 = grid;
     discriminant23 = grid;
     discriminant31 = grid;
