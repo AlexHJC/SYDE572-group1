@@ -17,4 +17,9 @@ GED_conf_matrix = [
 disp('Confusion matrix for Class A & B:');
 disp(GED_conf_matrix)
 
+P_error_1 = (FA + FB)/(A_size + B_size);
+
+disp('P_error for A & B:');
+disp(P_error_1);
+
 %%%%%% Case 2 %%%%%%%
