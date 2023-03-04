@@ -245,6 +245,7 @@ legend('Location', 'northeast')
 hold off
 
 %% error analysis
+% GED confusion matrix definitely incorrect
 disp('GED Error analysis:');
 GED_error_analysis;
 
