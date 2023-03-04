@@ -149,7 +149,7 @@ NN3_applied = NN3_clf(NN3_grid, 1 ,X1_2, X2_2, class_A, class_B, class_C);
 
 % Classify each point with kNN (k=5):
 kNN3_grid = create_mesh_grid(X1_2, X2_2);
-kNN3_applied = NEW_NN3_clf(kNN3_grid, 5, X1_2, X2_2, class_A, class_B, class_C);
+kNN3_applied = NN3_clf(kNN3_grid, 5, X1_2, X2_2, class_A, class_B, class_C);
 
 %% Plotting Classifiers Case 1
 
