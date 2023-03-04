@@ -121,9 +121,13 @@ ged_applied = GED_clf(ged_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov);
 map_grid = create_mesh_grid(X1_1, X2_1);
 map_applied = MAP_clf(map_grid, X1_1, X2_1, A_mean, B_mean, A_cov, B_cov, A_prior, B_prior);
 
-% Classifying with NN Case 1:
-NN_clf1 = NN_clf(1,X1_1, X2_1, class_A, class_B);
-kNN_clf1 = NN_clf(5,X1_1, X2_1, class_A, class_B);
+% Classify each point with NN:
+NN_grid = create_mesh_grid(X1_1, X2_1);
+NN_applied = NN_clf(NN_grid, 1,X1_1, X2_1, class_A, class_B);
+
+% Classify each point with kNN (k=5):
+kNN_grid = create_mesh_grid(X1_1, X2_1);
+kNN_applied = NN_clf(kNN_grid, 5, X1_1, X2_1, class_A, class_B);
 
 % Case 2:
 
@@ -135,13 +139,17 @@ med3_applied = MED3_clf(med3_grid, X1_2, X2_2, C_mean, D_mean, E_mean);
 ged3_grid = create_mesh_grid(X1_2, X2_2);
 ged3_applied = GED3_clf(ged3_grid, X1_2, X2_2, C_mean, D_mean, E_mean, C_cov, D_cov, E_cov);
 
-% Classify each point with MAP (Case 2) 
+% Classify each point with MAP
 map3_grid = create_mesh_grid(X1_2, X2_2);
 map3_applied = MAP3_clf(map3_grid, X1_2, X2_2, C_mean, D_mean, E_mean, C_cov, D_cov, E_cov, C_prior, D_prior, E_prior);
 
-% Classifying with NN Case 2:
-NN_clf2 = NN3_clf(1,X1_2, X2_2, class_A, class_B, class_C);
-kNN_clf2 = NN3_clf(5,X1_2, X2_2, class_A, class_B, class_C);
+% Classify each point with NN:
+NN3_grid = create_mesh_grid(X1_2, X2_2);
+NN3_applied = NN3_clf(NN3_grid, 1 ,X1_2, X2_2, class_A, class_B, class_C);
+
+% Classify each point with kNN (k=5):
+kNN3_grid = create_mesh_grid(X1_2, X2_2);
+kNN3_applied = NEW_NN3_clf(kNN3_grid, 5, X1_2, X2_2, class_A, class_B, class_C);
 
 %% Plotting Classifiers Case 1
 
@@ -179,12 +187,12 @@ plot_ellipse(A_mean(1), A_mean(2), thetaA, aA, bA, 'red', 'Std. dev contour for 
 plot_ellipse(B_mean(1), B_mean(2), thetaB, aB, bB, 'blue', 'Std. dev contour for Class B')
 
 % add decision boundaries for NN, 5NN classifiers
-contour(X1_1, X2_1, NN_clf1, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
-contour(X1_1, X2_1, kNN_clf1, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
+contour(X1_1, X2_1, NN_applied, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
+contour(X1_1, X2_1, kNN_applied, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
 
 % % add shaded decision boundary regions
-% contourf(X1_1, X2_1, NN_clf1, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
-% contourf(X1_1, X2_1, kNN_clf1, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
+% contourf(X1_1, X2_1, NN_applied, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
+% contourf(X1_1, X2_1, kNN_applied, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
 
 xlabel('x1')
 ylabel('x2')
@@ -232,12 +240,12 @@ plot_ellipse(D_mean(1), D_mean(2), thetaD, aD, bD, 'blue', 'Std. dev contour for
 plot_ellipse(E_mean(1), E_mean(2), thetaE, aE, bE, 'green', 'Std. dev contour for Class E')
 
 % add decision boundaries for NN, 5NN classifiers
-contour(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
-contour(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
+contour(X1_2, X2_2, NN3_applied, level, 'c', DisplayName='NN decision boundary') % NN CLASSIFIER
+contour(X1_2, X2_2, kNN3_applied, level, 'm', DisplayName='kNN decision boundary') % 5NN CLASSIFIER
 
 % % add shaded decision boundary regions
-% contourf(X1_2, X2_2, NN_clf2, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
-% contourf(X1_2, X2_2, kNN_clf2, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
+% contourf(X1_2, X2_2, NN3_applied, level, 'c', DisplayName='NN decision boundary', FaceAlpha=0.25) % NN CLASSIFIER
+% contourf(X1_2, X2_2, kNN3_applied, level, 'm', DisplayName='kNN decision boundary', FaceAlpha=0.25) % 5NN CLASSIFIER
 
 xlabel('x1')
 ylabel('x2')

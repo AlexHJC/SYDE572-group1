@@ -1,15 +1,14 @@
-function [NNdist] = NN3_clf(k, X1, X2, classA, classB, classC)
+function [applied_NN] = NN3_clf(grid, k, X1, X2, classA, classB, classC)
 % Definition: For a given x you wish to classify, you compute the distance
 % between x and all labeled samples, and you assign x the same class as its
 % nearest neighbour
 
 % initialize NNdist
-NNdist = zeros(size(X1));
+applied_NN = grid;
 
 % loop over every point in the grid
-for i = 1:size(X1, 1)
-    for j = 1:size(X1, 2)
-        
+for i = 1:height(X1)
+    for j = 1:width(X2)
         % calculate the distances between the current point and all samples
         point = [X1(i,j), X2(i,j)];
         a_distances = sqrt(sum((classA - point).^2, 2));
@@ -25,15 +24,15 @@ for i = 1:size(X1, 1)
         mean_c = mean(c_distances(sorted_c(1:k)));
         
         % assign the label of the nearest neighbor
-        if mean_a > mean_b && mean_a > mean_c
-            NNdist(i,j) = 1;
-        elseif mean_b > mean_a && mean_b > mean_c
-            NNdist(i,j) = 2;
-        elseif mean_c > mean_a && mean_c > mean_b
-            NNdist(i,j) = 3;
-        end
-        
-    end
-end
+        mean_distances = [mean_a, mean_b, mean_c];
+
+            if (min(mean_distances) == mean_a)
+                applied_NN(i,j) = 1;
+            elseif (min(mean_distances) == mean_b)
+                applied_NN(i,j) = 2;
+            elseif (min(mean_distances) == mean_c)
+                applied_NN(i,j) = 3;
+            end
+    end  
 end
 
