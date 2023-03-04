@@ -3,8 +3,8 @@
 %%%%%% Case 1 %%%%%%%
 
 % Confusion matrix
-[TA, FA] = get_true_false(A_size, NN_clf_err(1, class_A, class_B, class_A_test), @(d) d < 0);
-[TB, FB] = get_true_false(B_size, NN_clf_err(1, class_A, class_B, class_B_test), @(d) d > 0);
+[TA, FA] = get_true_false(A_size, NN_clf_err(1, class_A_test, class_A, class_B), @(d) d < 0);
+[TB, FB] = get_true_false(B_size, NN_clf_err(1, class_B_test, class_A, class_B), @(d) d > 0);
 
 % P(error)
 P_error_1 = (FA + FB) / (A_size + B_size);

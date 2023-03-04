@@ -55,6 +55,7 @@ FE_D = 0;
 FC_E = 0;
 FD_E = 0;
 
+% test cases
 % for i = 1:length(class_C)
 %     fprintf('cd %d \n', GED_applied_cd_c(i))
 %     fprintf('de %d \n', GED_applied_de_c(i))
