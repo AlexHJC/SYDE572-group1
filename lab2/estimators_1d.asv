@@ -45,11 +45,12 @@ function Gauss1D()
     xlabel('x');
     ylabel('p(x)');
     grid on;
-    
     figure;plot(x,y3);
+    legend('thing','thing2', 'thing3');
     title('skrrt');
     xlabel('x');
     ylabel('p(x)');
+    %axis([0 10 0 0.5]);
     grid on;
 end
    
