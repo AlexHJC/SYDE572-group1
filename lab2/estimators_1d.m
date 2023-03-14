@@ -47,17 +47,20 @@ function Gauss1D()
     grid on;
     
     figure;plot(x,y3);
+    hold on;
     title('skrrt');
     xlabel('x');
     ylabel('p(x)');
     grid on;
+    
 end
    
     
 
 %% 1-D Exponential Model Estimation
-
 %code
+%given parameter
+
 
 %% 1-D Uniform Model Estimation
 
