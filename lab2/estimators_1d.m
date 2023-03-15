@@ -60,6 +60,40 @@ end
 %% 1-D Exponential Model Estimation
 %code
 %given parameter
+function Exp1D()
+
+    load("lab2_1.mat");
+    
+    %given parameter
+    lambda_b = 1;
+    
+    
+    
+    %plot 
+    x_min = min(a, b);
+    x_max = max(a, b);
+    x = x_min:0.01:x_max;
+    y1 = exppdf(x, lambda);
+    y2 = exppdf(x, mean_b);
+    y3 = exppdf(x, mean_a);
+    
+    plot(x,y1);
+    hold on
+    plot(x,y2);
+    hold off;
+    title('skrrt');
+    xlabel('x');
+    ylabel('p(x)');
+    grid on;
+    
+    figure;plot(x,y3);
+    hold on;
+    title('skrrt');
+    xlabel('x');
+    ylabel('p(x)');
+    grid on;
+    
+end
 
 
 %% 1-D Uniform Model Estimation
