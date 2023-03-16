@@ -21,28 +21,9 @@ Gauss1D(true_mean_a, true_std_a);
 hold off;
 
 %Gaussian case B
-figure;
 Gauss1D(mean_b, std_b);
 Exp1D(lambda);
 hold off;
 
-%Exponential case A
-figure;
-Exp1D(mean_a);
-Gauss1D(true_mean_a, true_std_a);
-hold off;
 
-%Exponential case B
-figure;
-Exp1D(mean_b);
-Exp1D(lambda);
-hold off;
-
-%Uniform case A
-
-Gauss1D(true_mean_a, true_std_a);
-
-%Uniform case B
-
-Exp1D(lambda);
 

@@ -12,22 +12,7 @@ clc;
 
 %% 1-D Gaussian Model Estimation
 %code
-Gauss1D();
-function Gauss1D()
-
-    load("lab2_1.mat");
-    
-    %Find sample mean and std dev for a
-    mean_a = mean(a);
-    std_a = std(a);
-    
-    %true mean and std dev for a
-    true_mean_a = 5;
-    true_std_a = 1;
-    
-    %Find sample mean and std dev for b
-    mean_b = mean(b);
-    std_b = std(b);
+function Gauss1D(mean_a, std_a, true_mean_a, true_std_a)
     
     %plot 
     x_min = min(a, b);
@@ -64,18 +49,17 @@ function Exp1D()
 
     load("lab2_1.mat");
     
-    %given parameter
+    
+    %true parameter
     lambda_b = 1;
-    
-    
+
     
     %plot 
     x_min = min(a, b);
     x_max = max(a, b);
     x = x_min:0.01:x_max;
     y1 = exppdf(x, lambda);
-    y2 = exppdf(x, mean_b);
-    y3 = exppdf(x, mean_a);
+   
     
     plot(x,y1);
     hold on
