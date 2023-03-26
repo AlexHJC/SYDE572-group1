@@ -13,7 +13,6 @@ function Exp1D(lambda)
     
     plot(x,y1);
     hold on;
-    title('skrrt');
     xlabel('x');
     ylabel('p(x)');
     grid on;
