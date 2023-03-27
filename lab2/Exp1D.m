@@ -8,7 +8,7 @@ function Exp1D(lambda)
     %plot 
     x_min = min(a, b);
     x_max = max(a, b);
-    x = x_min:0.01:x_max;
+    x = (x_min - 2):0.01:(x_max + 2);
     y1 = exppdf(x, lambda);
     
     plot(x,y1);

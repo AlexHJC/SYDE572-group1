@@ -30,28 +30,28 @@ hold off;
 
 %Exponential case A
 figure;
-Exp1D(mean_a);
+Exp1D(1/mean_a);
 title('Exponential ML Estimation, Case A');
 Gauss1D(true_mean_a, true_std_a);
 hold off;
 
 %Exponential case B
 figure;
-Exp1D(mean_b);
+Exp1D(1/mean_b);
 title('Exponential ML Estimation, Case B');
 Exp1D(lambda);
 hold off;
 
 %Uniform case A
 figure;
-
+Uniform1D(a);
 Gauss1D(true_mean_a, true_std_a);
 title('Uniform ML Estimation, Case A');
 hold off;
 
 %Uniform case B
 figure;
-
+Uniform1D(b);
 Exp1D(lambda);
 title('Uniform ML Estimation, Case B');
 hold off;
