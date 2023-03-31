@@ -1,5 +1,7 @@
+%% SECTION 2: Model Estimation of the 1D Case
+
 load("lab2_1.mat");
-    
+
 %estimated parameters for a
 mean_a = mean(a);
 std_a = std(a);
@@ -14,28 +16,6 @@ std_b = std(b);
 
 %true parameters for b
 lambda = 1;
-
-
-
-
-
-% standard deviation = 0.1
-std1 = 0.1;
-figure;
-Parzen1D(a, std1);
-Gauss1D(true_mean_a, true_std_a); % True case A
-title('Parzen Estimation, Case A, Std. Dev. = 0.1');
-hold off;
-
-
-
-
-
-
-
-
-
-
 
 %Gaussian case A 
 Gauss1D(mean_a, std_a);
@@ -112,4 +92,40 @@ Exp1D(lambda); % True case B
 title('Parzen Estimation, Case B, Std. Dev. = 0.4');
 hold off;
 
+%% SECTION 3: Model Estimation of the 2D Case
+
+load("lab2_2.mat");
+
+% Parametric estimation
+
+% Non-parametric estimation
+cov = eye(2)*400;
+step = 1;
+[x, y] = meshgrid(0:step:500);
+mu = [mean(x(1,:)), mean(y(:,1))];
+
+% set up resolution and window to call parzen function
+x_min = min([al(:,1); bl(:,1); cl(:,1)]);
+x_max = max([al(:,1); bl(:,1); cl(:,1)]);
+y_min = min([al(:,2); bl(:,2); cl(:,2)]);
+y_max = max([al(:,2); bl(:,2); cl(:,2)]);
+res = [step x_min y_min x_max y_max];
+win = mvnpdf([x(:), y(:)], mu, cov);
+win = reshape(win, size(x,1), size(y,2));
+
+% calculate parzen probabilities
+[pa, xa, ya] = parzen(al, res, win);
+[pb, xb, yb] = parzen(bl, res, win);
+[pc, xc, yc] = parzen(cl, res, win);
+
+% mesh
+[X, Y] = meshgrid(xa, ya);
+
+figure;
+Parzen2D(pa, pb, pc, X, Y);
+title('2D Non-parametric Estimation using Parzen Window');
+scatter(al(:,1), al(:,2))
+scatter(bl(:,1), bl(:,2))
+scatter(cl(:,1), cl(:,2))
+hold off;
 

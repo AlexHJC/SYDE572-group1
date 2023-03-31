@@ -96,10 +96,40 @@ hold off;
 
 load("lab2_2.mat");
 
-% Parametric estimation
+% 3.1 Parametric estimation
 
-% Non-parametric estimation
-var2D = 400;
+% 3.2 Non-parametric estimation
 
+% system set-up
+x_min = min([al(:,1); bl(:,1); cl(:,1)]);
+x_max = max([al(:,1); bl(:,1); cl(:,1)]);
+y_min = min([al(:,2); bl(:,2); cl(:,2)]);
+y_max = max([al(:,2); bl(:,2); cl(:,2)]);
+step = 1;
+[x, y] = meshgrid(min(x_min, y_min):step:max(x_max, y_max));
+% needed for 2D pdf/parzen window
+cov = eye(2)*400;
+mu = [mean(x(1,:)), mean(y(:,1))];
 
+% set up resolution and window to call parzen function
+res = [step x_min y_min x_max y_max];
+win = mvnpdf([x(:), y(:)], mu, cov);
+win = reshape(win, size(x,1), size(y,2));
+
+% calculate parzen probabilities
+[pa, xa, ya] = parzen(al, res, win);
+[pb, xb, yb] = parzen(bl, res, win);
+[pc, xc, yc] = parzen(cl, res, win);
+
+% mesh grid for final plot, same dimensions as parzen output for plot
+[X, Y] = meshgrid(xa, ya);
+
+% plot results
+figure;
+Parzen2D(pa, pb, pc, X, Y);
+title('2D Non-parametric Estimation using Parzen Window');
+scatter(al(:,1), al(:,2))
+scatter(bl(:,1), bl(:,2))
+scatter(cl(:,1), cl(:,2))
+hold off;
 
