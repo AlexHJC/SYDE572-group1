@@ -21,6 +21,7 @@ lambda = 1;
 Gauss1D(mean_a, std_a);
 title('Gaussian ML Estimation, Case A');
 Gauss1D(true_mean_a, true_std_a);
+legend("Estimated p(x)","True p(x)");
 hold off;
 
 %Gaussian case B
@@ -28,6 +29,7 @@ figure;
 Gauss1D(mean_b, std_b);
 title('Gaussian ML Estimation, Case B');
 Exp1D(lambda);
+legend("Estimated p(x)","True p(x)");
 hold off;
 
 %Exponential case A
@@ -35,6 +37,7 @@ figure;
 Exp1D(1/mean_a);
 title('Exponential ML Estimation, Case A');
 Gauss1D(true_mean_a, true_std_a);
+legend("Estimated p(x)","True p(x)");
 hold off;
 
 %Exponential case B
@@ -42,6 +45,7 @@ figure;
 Exp1D(1/mean_b);
 title('Exponential ML Estimation, Case B');
 Exp1D(lambda);
+legend("Estimated p(x)","True p(x)");
 hold off;
 
 %Uniform case A
@@ -49,6 +53,7 @@ figure;
 Uniform1D(a);
 Gauss1D(true_mean_a, true_std_a);
 title('Uniform ML Estimation, Case A');
+legend("Estimated p(x)","True p(x)");
 hold off;
 
 %Uniform case B
@@ -56,6 +61,7 @@ figure;
 Uniform1D(b);
 Exp1D(lambda);
 title('Uniform ML Estimation, Case B');
+legend("Estimated p(x)","True p(x)");
 hold off;
 
 %Parzen case A 
@@ -66,6 +72,7 @@ figure;
 Parzen1D(a, std1);
 Gauss1D(true_mean_a, true_std_a); % True case A
 title('Parzen Estimation, Case A, Std. Dev. = 0.1');
+legend("Estimated p(x)(std dev = 0.1)","True p(x)");
 hold off;
 
 % standard deviation = 0.4
@@ -74,6 +81,7 @@ figure;
 Parzen1D(a, std2);
 Gauss1D(true_mean_a, true_std_a); % True case A
 title('Parzen Estimation, Case A, Std. Dev. = 0.4');
+legend("Estimated p(x) (std dev = 0.4)","True p(x)");
 hold off;
 
 %Parzen case B
@@ -83,6 +91,7 @@ figure;
 Parzen1D(b, std1);
 Exp1D(lambda); % True case B
 title('Parzen Estimation, Case B, Std. Dev. = 0.1');
+legend("Estimated p(x)(std dev = 0.1)","True p(x)");
 hold off;
 
 % standard deviation = 0.4
@@ -90,6 +99,7 @@ figure;
 Parzen1D(b, std2);
 Exp1D(lambda); % True case B
 title('Parzen Estimation, Case B, Std. Dev. = 0.4');
+legend("Estimated p(x) (std dev = 0.4)","True p(x)");
 hold off;
 
 %% SECTION 3: Model Estimation of the 2D Case
@@ -97,6 +107,26 @@ hold off;
 load("lab2_2.mat");
 
 % 3.1 Parametric estimation
+
+% % Finding mean for the data set
+% mean_al = mean(al);
+% mean_bl = mean(bl);
+% mean_cl = mean(cl);
+% 
+% % Finding covariance for the data set
+% cov_al = cov(al);
+% cov_bl = cov(bl);
+% cov_cl = cov(cl);
+% 
+% % system set-up
+% x_min = min([al(:,1); bl(:,1); cl(:,1)]);
+% x_max = max([al(:,1); bl(:,1); cl(:,1)]);
+% y_min = min([al(:,2); bl(:,2); cl(:,2)]);
+% y_max = max([al(:,2); bl(:,2); cl(:,2)]);
+% step = 1;
+% [x, y] = meshgrid(min(x_min, y_min):step:max(x_max, y_max));
+
+% system set-up
 
 % 3.2 Non-parametric estimation
 
