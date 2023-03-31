@@ -56,4 +56,38 @@ Exp1D(lambda);
 title('Uniform ML Estimation, Case B');
 hold off;
 
+%Parzen case A 
+
+% standard deviation = 0.1
+std1 = 0.1;
+figure;
+Parzen1D(a, std1);
+Gauss1D(true_mean_a, true_std_a); % True case A
+title('Parzen Estimation, Case A, Std. Dev. = 0.1');
+hold off;
+
+% standard deviation = 0.4
+std2 = 0.4;
+figure;
+Parzen1D(a, std2);
+Gauss1D(true_mean_a, true_std_a); % True case A
+title('Parzen Estimation, Case A, Std. Dev. = 0.4');
+hold off;
+
+%Parzen case B
+
+% standard deviation = 0.1
+figure;
+Parzen1D(b, std1);
+Exp1D(lambda); % True case B
+title('Parzen Estimation, Case B, Std. Dev. = 0.1');
+hold off;
+
+% standard deviation = 0.4
+figure;
+Parzen1D(b, std2);
+Exp1D(lambda); % True case B
+title('Parzen Estimation, Case B, Std. Dev. = 0.4');
+hold off;
+
 
