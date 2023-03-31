@@ -1,5 +1,7 @@
+%% SECTION 2: Model Estimation of the 1D Case
+
 load("lab2_1.mat");
-    
+
 %estimated parameters for a
 mean_a = mean(a);
 std_a = std(a);
@@ -89,5 +91,15 @@ Parzen1D(b, std2);
 Exp1D(lambda); % True case B
 title('Parzen Estimation, Case B, Std. Dev. = 0.4');
 hold off;
+
+%% SECTION 3: Model Estimation of the 2D Case
+
+load("lab2_2.mat");
+
+% Parametric estimation
+
+% Non-parametric estimation
+var2D = 400;
+
 
 
