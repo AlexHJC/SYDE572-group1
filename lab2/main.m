@@ -103,32 +103,43 @@ legend("Estimated p(x) (std dev = 0.4)","True p(x)");
 hold off;
 
 %% SECTION 3: Model Estimation of the 2D Case
+clear all 
+clc
 
 load("lab2_2.mat");
 
-% 3.1 Parametric estimation
+% Parametric estimation
 
-% % Finding mean for the data set
-% mean_al = mean(al);
-% mean_bl = mean(bl);
-% mean_cl = mean(cl);
-% 
-% % Finding covariance for the data set
-% cov_al = cov(al);
-% cov_bl = cov(bl);
-% cov_cl = cov(cl);
-% 
-% % system set-up
-% x_min = min([al(:,1); bl(:,1); cl(:,1)]);
-% x_max = max([al(:,1); bl(:,1); cl(:,1)]);
-% y_min = min([al(:,2); bl(:,2); cl(:,2)]);
-% y_max = max([al(:,2); bl(:,2); cl(:,2)]);
-% step = 1;
-% [x, y] = meshgrid(min(x_min, y_min):step:max(x_max, y_max));
-
+% Finding mean for the data set
+mean_a = mean(al);
+mean_b = mean(bl);
+mean_c = mean(cl);
+ 
+% Finding covariance for the data set
+cov_a = cov(al);
+cov_b = cov(bl);
+cov_c = cov(cl);
+ 
 % system set-up
+x_min = min([al(:,1); bl(:,1); cl(:,1)]);
+x_max = max([al(:,1); bl(:,1); cl(:,1)]);
+y_min = min([al(:,2); bl(:,2); cl(:,2)]);
+y_max = max([al(:,2); bl(:,2); cl(:,2)]);
+step = 1;
+[x, y] = meshgrid(x_min-2:step:x_max+2, y_min-1:step:y_max+2);
+grid = zeros(size(x));
 
-% 3.2 Non-parametric estimation
+% apply ML estimation & plot results
+figure;
+applied_ML_grid = ML2D(grid, x, y, mean_a, mean_b, mean_c, cov_a, cov_b, cov_c);
+title('2D Parametric Estimation using Maximum Likelihood Estimation');
+scatter(al(:,1), al(:,2))
+scatter(bl(:,1), bl(:,2))
+scatter(cl(:,1), cl(:,2))
+legend("ML estimation boundary","class A", "class B", "class C");
+hold off;
+
+% Non-parametric estimation
 
 % system set-up
 x_min = min([al(:,1); bl(:,1); cl(:,1)]);
@@ -139,7 +150,8 @@ step = 1;
 [x, y] = meshgrid(min(x_min, y_min):step:max(x_max, y_max));
 % needed for 2D pdf/parzen window
 cov = eye(2)*400;
-mu = [mean(x(1,:)), mean(y(:,1))];
+%mu = [mean(x(1,:)), mean(y(:,1))];
+mu = [0 0];
 
 % set up resolution and window to call parzen function
 res = [step x_min y_min x_max y_max];
