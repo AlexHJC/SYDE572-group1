@@ -22,11 +22,11 @@ function applied_ML_grid = ML2D(grid, X1, X2, mean1, mean2, mean3, cov1, cov2, c
     % Classifiy each grid point using discriminant value
     for i = 1:height(X1)
         for j = 1:width(X2)
-            if (discriminant12(i,j) <= 0 && discriminant31(i,j) >= 0)
+            if (discriminant12(i,j) >= 0 && discriminant31(i,j) <= 0)
                 applied_ML_grid(i,j) = 1;
-            elseif (discriminant23(i,j) <= 0 && discriminant12(i,j) >= 0)
+            elseif (discriminant23(i,j) >= 0 && discriminant12(i,j) <= 0)
                 applied_ML_grid(i,j) = 2;
-            elseif (discriminant31(i,j) <= 0 && discriminant23(i,j) >= 0)
+            elseif (discriminant31(i,j) >= 0 && discriminant23(i,j) <= 0)
                 applied_ML_grid(i,j) = 3;
             % else
                 % leave value of 0 in the grid, cannot classify point since its
