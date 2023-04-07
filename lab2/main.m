@@ -163,3 +163,7 @@ scatter(bl(:,1), bl(:,2))
 scatter(cl(:,1), cl(:,2))
 hold off;
 
+%% SECTION 4: Sequential Discriminants
+
+load("lab2_3.mat");
+
