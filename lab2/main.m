@@ -183,3 +183,6 @@ load("lab2_3.mat");
 
 % load dataset
 load('lab2_3.mat');
+
+class_a = load('lab2_3','a');
+class_b = load('lab2_3','b');
