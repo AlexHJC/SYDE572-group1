@@ -177,5 +177,9 @@ hold off;
 
 %% SECTION 4: Sequential Discriminants
 
+% system setup
+clear;
 load("lab2_3.mat");
 
+% load dataset
+load('lab2_3.mat');
