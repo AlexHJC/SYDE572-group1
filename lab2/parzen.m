@@ -56,3 +56,5 @@ end;
 p = conv2(p,win,'same')/numpts;
 x = [dl(1):res:(dh(1)+res)]; x = x(1:size(p,2));
 y = [dl(2):res:(dh(2)+res)]; y = y(1:size(p,1));
+
+end
