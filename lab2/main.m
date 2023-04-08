@@ -139,7 +139,13 @@ scatter(cl(:,1), cl(:,2))
 legend("ML estimation boundary","class A", "class B", "class C");
 hold off;
 
-% Non-parametric estimation
+%% Non-parametric estimation
+
+% system set-up
+clear all 
+clc
+
+load("lab2_2.mat");
 
 % system set-up
 x_min = min([al(:,1); bl(:,1); cl(:,1)]);
@@ -150,8 +156,7 @@ step = 1;
 [x, y] = meshgrid(min(x_min, y_min):step:max(x_max, y_max));
 % needed for 2D pdf/parzen window
 cov = eye(2)*400;
-%mu = [mean(x(1,:)), mean(y(:,1))];
-mu = [0 0];
+mu = [mean(x(1,:)), mean(y(:,1))];
 
 % set up resolution and window to call parzen function
 res = [step x_min y_min x_max y_max];
@@ -173,6 +178,7 @@ title('2D Non-parametric Estimation using Parzen Window');
 scatter(al(:,1), al(:,2))
 scatter(bl(:,1), bl(:,2))
 scatter(cl(:,1), cl(:,2))
+legend("Parzen window estimation boundary","class A", "class B", "class C");
 hold off;
 
 %% SECTION 4: Sequential Discriminants
