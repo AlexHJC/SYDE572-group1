@@ -1,7 +1,6 @@
 %% Section 4: Sequential discriminants
 
 clear;
-clc;
 close all;
 load('lab2_3.mat');
 
@@ -68,7 +67,4 @@ hold off;
 
 %% Probability Of Error
 % section 4.2
-disp("---probability of error---")
-disp("error for sequential classifier 1 is = " + error1);
-disp("error for sequential classifier 2 is = " + error2);
-disp("error for sequential classifier 3 is = " + error3);
+disp('error for ')
