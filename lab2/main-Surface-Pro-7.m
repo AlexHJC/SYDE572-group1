@@ -103,7 +103,7 @@ legend("Estimated p(x) (std dev = 0.4)","True p(x)");
 hold off;
 
 %% SECTION 3: Model Estimation of the 2D Case
-clear 
+clear all 
 clc
 
 load("lab2_2.mat");
@@ -142,7 +142,7 @@ hold off;
 %% Non-parametric estimation
 
 % system set-up
-clear
+clear all 
 clc
 
 load("lab2_2.mat");
@@ -183,77 +183,5 @@ hold off;
 
 %% SECTION 4: Sequential Discriminants
 
-% system setup
-clear;
-close all;
 load("lab2_3.mat");
-
-% define grid
-x_min = min([a(:,1); b(:,1)]);
-x_max = max([a(:,1); b(:,1)]);
-y_min = min([a(:,2); b(:,2)]);
-y_max = max([a(:,2); b(:,2)]);
-step = 1;
-[x, y] = meshgrid(min(x_min, y_min):step:max(x_max, y_max));
-
-% intitialize vars
-J=5; % maximum number of sequential classifier attempts
-limit = 10; % maximum number of discriminants made per classifier attempt
-discriminant_list = zeros(J, limit, size(x,1), size(x,2)); % sequence of discriminants which are iterated through
-
-sequence = ones(J,1); % working var to keep track of iterations
-misclassified = zeros(J, limit); % working var to keep track of misclassified points
-
-a_var = a;
-b_var = b; % working vars of datasets a and b which are manipulated during runtime
-
-misclassified_a = ones(J,1);
-misclassified_b = ones(J,1); % working vars of number of misclassified points of b and a
-
-for k=1:J
-    while(misclassified_a(k) > 0 && misclassified_b(k) > 0 && sequence(k) <= J && sequence(k) <= limit && ~isempty(a_var) && ~isempty(b_var))
-        rand_a = randi([1 length(a_var)]);
-        rand_b = randi([1 length(b_var)]);
-        mu_a = a(rand_a,:);
-        mu_b = b(rand_b,:);
-
-        discriminant = MED_clf(mu_a, mu_b, x, y);
-        
-        % Check for misclassified points
-        misclassified_a(k) = 0;
-        for i=1:length(a_var)
-            if interp2(x,y,discriminant,a_var(i,1),a_var(i,2)) > 0
-                misclassified_a(k) = misclassified_a(k) + 1;
-            end
-        end
-        misclassified_b(k) = 0;
-        for i=1:length(b_var)
-            if interp2(x,y,discriminant,b_var(i,1),b_var(i,2)) > 0
-                misclassified_b(k) = misclassified_b(k) + 1;
-            end
-        end
-
-        % Store the total error for this sequence
-        misclassified(k, sequence(k)) = misclassified_a(k) + misclassified_b(k);        
-        sequence(k) = sequence(k) + 1;
-        
-        discriminant_list(k,sequence(k),:,:) = discriminant;
-    end
-
-    % no points in A that are misclassified as B, so remove correctly
-    % classified points in B
-    if (misclassified_a(k) == 0)
-        b_var = b_var(interp2(x,y,discriminant,b_var(:,1),b_var(:,2)) < 0,:);
-    end
-    
-    % no points in B that are misclassified as A, so remove correctly
-    % classified points in A
-    if (misclassified_b(k) == 0)
-        a_var = a_var(interp2(X1,Y1,discriminant,a_var(:,1),a_var(:,2)) > 0,:);
-    end
-
-end
-
-
-
 

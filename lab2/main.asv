@@ -254,6 +254,17 @@ for k=1:J
 
 end
 
+%% plotting sequential classifiers
+
+% G1
+figure;
+scatter(classA_part4(:,1), classA_part4(:,2), 'ro');
+hold on;
+scatter(classB_part4(:,1), classB_part4(:,2), 'kx');
+hold on;
+contour(x,y,G1,'c');
+title('Sequential Classifier 1');
+
 
 
 
