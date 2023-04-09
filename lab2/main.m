@@ -249,7 +249,7 @@ for k=1:J
     % no points in B that are misclassified as A, so remove correctly
     % classified points in A
     if (misclassified_b(k) == 0)
-        a_var = a_var(interp2(X1,Y1,discriminant,a_var(:,1),a_var(:,2)) > 0,:);
+        a_var = a_var(interp2(x,y,discriminant,a_var(:,1),a_var(:,2)) > 0,:);
     end
 
 end
