@@ -21,10 +21,8 @@ grid = zeros(size(x));
 %% Compute Sequential Classifiers
 % [4.1, 4.2]
 [G1, err1] = sequential_classifier(x, y, 0, classA_part4, classB_part4);
-[G2, err2] = sequential_classifier(x, y, 0, classA_part4, classB_part4);
-[G3, err3] = sequential_classifier(x, y, 0, classA_part4, classB_part4);
 
-%% 3 sequential classifiers
+%% sequential classifiers
 
 % G1
 figure;
@@ -39,15 +37,3 @@ legend('Class A','Class B', 'Sequential Classifier');
 xlabel('x1');
 ylabel('x2');
 hold off;
-
-%% G2
-figure;
-scatter(classA_part4(:,1), classA_part4(:,2), 'ro');
-hold on;
-scatter(classB_part4(:,1),classB_part4(:,2), 'kx');
-hold on;
-contour(x,y,G2,'c');
-title('Sequential Classifier 2');
-legend('Class A','Class B', 'Sequential Classifier');
-xlabel('x1');
-ylabel('x2');
