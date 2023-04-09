@@ -69,6 +69,28 @@ hold off;
 %% Probability Of Error
 % section 4.2
 disp("---probability of error---")
-disp("error for sequential classifier 1 is = " + error1);
-disp("error for sequential classifier 2 is = " + error2);
-disp("error for sequential classifier 3 is = " + error3);
+disp("error for sequential classifier 1 is " + error1);
+disp("error for sequential classifier 2 is " + error2);
+disp("error for sequential classifier 3 is " + error3);
+
+
+%% Calculate error rate with varying J
+% section 4.3
+[min, max, avg, std] = SEQ_clf_err(x, y, a_data, b_data);
+%% Creating a plot to show error rate as a function of j
+figure;
+plot(min(:,2));
+hold on;
+plot(max(:,2));
+hold on;
+plot(avg(:,2));
+hold on;
+plot(std(:,2));
+hold on;
+xlim([1 5])
+ylim([0 0.26])
+title('minimum error rate');
+legend('Minimum Error Rate','Maximum Error Rate', 'Average Error Rate', 'Standard Deviation of the Error Rates');
+xlabel('J');
+ylabel('Error Rate');
+hold off;

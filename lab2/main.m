@@ -1,5 +1,15 @@
+%% SYDE 572 Lab 2
+% 04-09-2023
+% Mohammed Abidi 20720554
+% Alex Cho 20800781
+% Etido Thompson 20765765
+% Oceane Vandame 20728517
+
 %% SECTION 2: Model Estimation of the 1D Case
 
+clear;
+clc;
+close all;
 load("lab2_1.mat");
 
 %estimated parameters for a
@@ -103,9 +113,9 @@ legend("Estimated p(x) (std dev = 0.4)","True p(x)");
 hold off;
 
 %% SECTION 3: Model Estimation of the 2D Case
-clear 
-clc
-
+clear; 
+clc;
+close all;
 load("lab2_2.mat");
 
 % Parametric estimation
@@ -142,9 +152,9 @@ hold off;
 %% Non-parametric estimation
 
 % system set-up
-clear
-clc
-
+clear;
+clc;
+close all;
 load("lab2_2.mat");
 
 % system set-up
@@ -251,10 +261,29 @@ hold off;
 
 %% Probability Of Error
 % section 4.2
-disp("---probability of error---")
+disp("---probability of error for sequential classifiers---")
 disp("error for sequential classifier 1 is = " + error1);
 disp("error for sequential classifier 2 is = " + error2);
 disp("error for sequential classifier 3 is = " + error3);
 
+%% Calculate error rate with varying J
+% section 4.3
+[min, max, avg, std] = SEQ_clf_err(x, y, a_data, b_data);
 
-
+%% Creating a plot to show error rate as a function of j
+figure;
+plot(min(:,2));
+hold on;
+plot(max(:,2));
+hold on;
+plot(avg(:,2));
+hold on;
+plot(std(:,2));
+hold on;
+xlim([1 5])
+ylim([0 0.26])
+title('minimum error rate');
+legend('Minimum Error Rate','Maximum Error Rate', 'Average Error Rate', 'Standard Deviation of the Error Rates');
+xlabel('J');
+ylabel('Error Rate');
+hold off;
