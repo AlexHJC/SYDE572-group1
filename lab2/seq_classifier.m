@@ -55,7 +55,7 @@ function [G, Error] = seq_classifier(x, y, limit, A, B)
 
         % if the limit is not 0, and j is greater than the limit then stop 
         % the loop 
-        if limit == not(0) && j > limit
+        if limit ~= 0 && j == limit
             continue_loop = false;
         end
 

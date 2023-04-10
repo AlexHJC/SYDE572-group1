@@ -226,35 +226,29 @@ scatter(a_data(:,1), a_data(:,2), 'ro');
 hold on;
 scatter(b_data(:,1), b_data(:,2), 'kx');
 hold on;
-contour(x,y,G1,'c');
-title('Sequential Classifier 1');
-legend('Class A','Class B', 'Sequential Classifier');
+contour(x,y,G1,'b');
 xlabel('x1');
 ylabel('x2');
-hold off;
+hold on;
 
 % G2
-figure;
 scatter(a_data(:,1), a_data(:,2), 'ro');
 hold on;
 scatter(b_data(:,1), b_data(:,2), 'kx');
 hold on;
 contour(x,y,G2,'c');
-title('Sequential Classifier 2');
-legend('Class A','Class B', 'Sequential Classifier');
 xlabel('x1');
 ylabel('x2');
-hold off;
+hold on;
 
 % G3
-figure;
 scatter(a_data(:,1), a_data(:,2), 'ro');
 hold on;
 scatter(b_data(:,1), b_data(:,2), 'kx');
 hold on;
-contour(x,y,G3,'c');
-title('Sequential Classifier 3');
-legend('Class A','Class B', 'Sequential Classifier');
+contour(x,y,G3,'g');
+title('3 Sequential Classifiers');
+legend('Class A','Class B');
 xlabel('x1');
 ylabel('x2');
 hold off;
@@ -281,7 +275,6 @@ hold on;
 plot(std(:,2));
 hold on;
 xlim([1 5])
-ylim([0 0.26])
 title('minimum error rate');
 legend('Minimum Error Rate','Maximum Error Rate', 'Average Error Rate', 'Standard Deviation of the Error Rates');
 xlabel('J');
